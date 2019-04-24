@@ -12,22 +12,29 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import {ISocket} from '../contracts/ISocket';
+import io from '../common/Socket';
 
 @Component({})
 export default class Login extends Vue {
-  private socket: ISocket  = (this as any).$socket;
-
   private loginParams = {
     name: '',
     password: '',
   };
 
   private submit() {
-    // this.socket.on('connect', () => {
+    // console.log(this.socket);
+    // const io = new VueSocketIo({
+    //   debug: true,
+    //   connection: SocketIo('http://127.0.0.1:3001'),
+    // });
+    // Vue.use(io);
+
+    // const socket = (this as any).$socket;
+
+    // socket.on('connect', () => {
     //   console.log(123);
     // });
-    console.log(this.socket);
+    const socket = io('http://127.0.0.1:3001');
   }
 }
 </script>
