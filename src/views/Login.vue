@@ -35,6 +35,12 @@ export default class Login extends Vue {
     //   console.log(123);
     // });
     const socket = io('http://127.0.0.1:3001');
+
+    socket.emit('login', this.loginParams.name);
+
+    socket.on('login', () => {
+      console.log('hahah');
+    });
   }
 }
 </script>
