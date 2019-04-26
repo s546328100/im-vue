@@ -2,6 +2,12 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import { Input, Button, Form, FormItem } from 'element-ui';
+
+Vue.use(Input);
+Vue.use(Button);
+Vue.use(Form);
+Vue.use(FormItem);
 
 Vue.config.productionTip = false;
 

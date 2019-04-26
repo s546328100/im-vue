@@ -29,13 +29,13 @@ const route = new Router({
   ],
 });
 
-// route.beforeEach((to, f, next) => {
-//   const token = localStorage.getItem('token');
-//   if ((token && token.length > 0) || to.name === 'login') {
-//     next();
-//   } else {
-//     location.href = '/login?redirectUrl=' + location.pathname;
-//   }
-// });
+route.beforeEach((to, f, next) => {
+  const token = localStorage.getItem('token');
+  if ((token && token.length > 0) || to.name === 'login') {
+    next();
+  } else {
+    location.href = '/login?redirectUrl=' + location.pathname;
+  }
+});
 
 export default route;

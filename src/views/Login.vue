@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <p>
-      <input type="text" v-model="loginParams.name">
-    </p>
-    <p>
-      <input type="text" v-model="loginParams.password">
-    </p>
-    <button @click="submit">登录</button>
-  </div>
+  <el-form :model="loginParams" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+    <el-form-item label="昵称" prop="name">
+      <el-input type="name" v-model="loginParams.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script lang="ts">
@@ -16,10 +15,36 @@ import io from '../common/Socket';
 
 @Component({})
 export default class Login extends Vue {
-  private loginParams = {
+  public loginParams = {
     name: '',
-    password: '',
+    // password: '',
   };
+
+  public rules = {
+    name: [
+      {
+        validator: (rule: any, value: string, callback: any) => {
+          if (value === '') {
+            callback(new Error('请输入昵称'));
+          } else {
+            callback();
+          }
+        },
+        trigger: 'blur',
+      },
+    ],
+  };
+
+  public submitForm(formName: string) {
+    (this.$refs[formName] as any).validate((valid: any) => {
+      if (valid) {
+        alert('submit!');
+      } else {
+        console.log('error submit!!');
+        return false;
+      }
+    });
+  }
 
   private submit() {
     // console.log(this.socket);
@@ -40,6 +65,12 @@ export default class Login extends Vue {
 
     socket.on('login', () => {
       console.log('hahah');
+    });
+
+    socket.emit('events', 'eeeee');
+
+    socket.on('events', (data: any) => {
+      console.log('data', data);
     });
   }
 }

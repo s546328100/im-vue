@@ -11,7 +11,6 @@ class Socket {
   private socket: SocketIOClient.Socket;
 
   constructor(url: string) {
-    console.log('000');
     this.socket = io(url);
 
     this.socket.on('connect', () => {
@@ -24,7 +23,7 @@ class Socket {
   }
 
   public on(event: string, fn: any) {
-    this.socket.once(event, fn);
+    this.socket.on(event, fn);
   }
 
   public emit(event: string, ...args: any[]) {
