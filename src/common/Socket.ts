@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 class Socket {
-  public static getInstance(url: string): Socket {
+  public static getInstance(url = ''): Socket {
     this.instance = this.instance || new Socket(url);
     return this.instance;
   }
@@ -31,4 +31,4 @@ class Socket {
   }
 }
 
-export default (url: string) => Socket.getInstance(url);
+export default (url?: string) => Socket.getInstance(url);
