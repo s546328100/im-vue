@@ -11,11 +11,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { userLogin } from '@/views/request/Request';
+import { ILoginParams } from '@/contracts/ICommon';
 import io from '../common/Socket';
 
 @Component({})
 export default class Login extends Vue {
-  public loginParams = {
+  public loginParams: ILoginParams = {
     name: '',
     // password: '',
   };
@@ -38,7 +40,10 @@ export default class Login extends Vue {
   public submitForm(formName: string) {
     (this.$refs[formName] as any).validate((valid: any) => {
       if (valid) {
-        alert('submit!');
+        userLogin(this.loginParams).subscribe((item: any) => {
+          console.log(123);
+          console.log(item);
+        });
       } else {
         console.log('error submit!!');
         return false;
