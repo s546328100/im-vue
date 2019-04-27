@@ -25,7 +25,7 @@ const ANY: any = new Proxy(
 export const createRequest = <I, O>(options: IAjaxRequest) => {
     return (p?: I) => {
         const body = { ...(options.body || {}), ...(p || {}) };
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         return (ajax({
             ...options,
             body,

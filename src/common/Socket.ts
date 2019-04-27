@@ -1,9 +1,17 @@
 import io from 'socket.io-client';
 
 class Socket {
-  public static getInstance(url = ''): Socket {
-    this.instance = this.instance || new Socket(url);
-    return this.instance;
+  public static getInstance(
+    url?: string | ((err: boolean, socket: Socket) => void),
+    fn?: (err: boolean, socket: Socket) => void,
+  ): void {
+    let [arg1, arg2] = arguments;
+    if (!arg2) {
+      arg2 = arg1;
+    } else {
+      this.instance = new Socket(arg1);
+    }
+    arg2.call(this, !this.instance, this.instance);
   }
 
   private static instance: Socket;
@@ -31,4 +39,7 @@ class Socket {
   }
 }
 
-export default (url?: string) => Socket.getInstance(url);
+export default (
+  url?: string | ((err: boolean, socket: Socket) => void),
+  fn?: (err: boolean, socket: Socket) => void,
+) => Socket.getInstance(url, fn);
