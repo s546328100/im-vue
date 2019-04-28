@@ -22,16 +22,21 @@ const route = new Router({
       name: 'message',
       component: () => import('./views/Message.vue'),
     },
+    {
+      path: '/about',
+      name: 'About',
+      component: () => import('./views/About.vue'),
+    },
   ],
 });
 
-route.beforeEach((to, f, next) => {
-  const token = sessionStorage.getItem('token');
-  if ((token && token.length > 0) || to.name === 'login') {
-    next();
-  } else {
-    location.href = '/login?redirectUrl=' + location.pathname;
-  }
-});
+// route.beforeEach((to, f, next) => {
+//   const token = sessionStorage.getItem('token');
+//   if ((token && token.length > 0) || to.name === 'login') {
+//     next();
+//   } else {
+//     location.href = '/login?redirectUrl=' + location.pathname;
+//   }
+// });
 
 export default route;
