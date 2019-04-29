@@ -27,7 +27,16 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({})
+@Component({
+  sockets: {
+    connect: () => {
+      console.log('socket connected');
+    },
+    disconnect: () => {
+      console.log('socket disconnect');
+    },
+  },
+})
 export default class Message extends Vue {
   public sysMessages: string[] = [];
   public messages: any[] = [];
@@ -46,20 +55,19 @@ export default class Message extends Vue {
     //     name: sessionStorage.getItem('user'),
     //     test: this.form.test,
     //   });
-
     //   this.form.test = '';
     // });
   }
 
   private mounted() {
+    this.$socket.on('sysMessage', (data: string) => {
+      this.sysMessages.push(data);
+    });
     // io((err, socket) => {
     //   if (err) {
     //     sessionStorage.removeItem('token');
     //     return this.$router.push('/login');
     //   }
-    //   socket.on('sysMessage', (data: string) => {
-    //     this.sysMessages.push(data);
-    //   });
 
     //   socket.on('message', (data: string) => {
     //     this.messages.push(data);

@@ -27,6 +27,16 @@ Vue.use(Footer);
 
 Vue.config.productionTip = false;
 
+import SocketIO from 'socket.io-client';
+import VueSocketIO from 'vue-socket.io';
+
+const socket = new VueSocketIO({
+  debug: true,
+  connection: SocketIO('http://127.0.0.1:3001'),
+});
+
+Vue.use(socket);
+
 new Vue({
   router,
   store,

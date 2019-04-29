@@ -6,7 +6,7 @@ import {SocketIOClient} from "../../vue-socket.io";
 
 declare module "vue/types/options" {
   interface ComponentOptions<V extends Vue> {
-    socket?: SocketIOClient.Socket;
+    sockets?: any;
   }
 }
 
