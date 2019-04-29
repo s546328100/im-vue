@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import SocketIO from 'socket.io-client';
+import VueSocketIO from 'vue-socket.io';
 
 import {
   Input,
@@ -26,16 +28,6 @@ Vue.use(Main);
 Vue.use(Footer);
 
 Vue.config.productionTip = false;
-
-import SocketIO from 'socket.io-client';
-import VueSocketIO from 'vue-socket.io';
-
-const socket = new VueSocketIO({
-  debug: true,
-  connection: SocketIO('http://127.0.0.1:3001'),
-});
-
-Vue.use(socket);
 
 new Vue({
   router,
