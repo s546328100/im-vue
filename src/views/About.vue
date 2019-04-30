@@ -1,25 +1,5 @@
 <template>
-  <div>
-    {{count}}
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
+  <div class="about">
+    <h1>This is an about page</h1>
   </div>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { mapState } from 'vuex';
-
-@Component({
-  computed: mapState(['count']),
-  methods: {
-    increment() {
-      this.$store.dispatch('incrementAsync');
-    },
-    decrement() {
-      this.$store.commit('decrement');
-    },
-  },
-})
-export default class About extends Vue {}
-</script>

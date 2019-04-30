@@ -1,14 +1,12 @@
 <template>
-  <div class="login">
-    <el-form class="login-form" :model="loginParams" status-icon :rules="rules" ref="ruleForm" label-width="100px">
-      <el-form-item label="昵称" prop="name">
-        <el-input type="name" v-model="loginParams.name" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-form :model="loginParams" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+    <el-form-item label="昵称" prop="name">
+      <el-input type="name" v-model="loginParams.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script lang="ts">
@@ -47,7 +45,7 @@ export default class Login extends Vue {
           sessionStorage.setItem('token', item);
           sessionStorage.setItem('user', item);
 
-          io('http://127.0.0.1:3001?token=abc', (err, socket) => {
+          io('http://127.0.0.1:3001', (err, socket) => {
             if (err) {
               sessionStorage.removeItem('token');
               return this.$router.push('/login');
@@ -65,21 +63,3 @@ export default class Login extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.login {
-  width: 100vw;
-  height: calc(100vh - 185px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 0 12.5vw;
-}
-.login-form {
-  margin-right: 100px;
-  width: 50%;
-}
-</style>

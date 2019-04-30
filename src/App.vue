@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
-    </div>
+    </div>-->
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-// import socketio from 'socket.io-client';
-// const VueSocketio = require('vue-socket.io');
-// Vue.use(VueSocketio, socketio('xxx:80'));
 
 @Component({})
 export default class App extends Vue {
