@@ -10,38 +10,28 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import SocketIO from 'socket.io-client';
-import VueSocketIO from 'vue-socket.io';
+// import socketio from 'socket.io-client';
+// const VueSocketio = require('vue-socket.io');
+// Vue.use(VueSocketio, socketio('xxx:80'));
 
-@Component({
-  sockets: {
-    connect: () => {
-      console.log('socket connected111');
-    },
-    disconnect: () => {
-      console.log('socket disconnect111');
-    },
-  },
-})
+@Component({})
 export default class App extends Vue {
-  private mounted() {
-    const user = sessionStorage.getItem('user');
-    if (user && (!this.$socket || !this.$socket.connected)) {
-      console.log(1238888888);
-      const socket = new VueSocketIO({
-        debug: true,
-        connection: SocketIO('http://127.0.0.1:3001', {
-          query: { token: sessionStorage.getItem('user') || '' },
-        }),
-        vuex: {
-          store: this.$store,
-          actionPrefix: 'SOCKET_',
-          mutationPrefix: 'SOCKET_',
-        },
-      });
+  constructor() {
+    super();
 
-      Vue.use(socket);
-    }
+    // (this as any).$socket.on('connect', () => {
+    //   console.log(123);
+    // });
+  }
+  // private sockets = {
+  //       connect: () => {
+  //           console.log('socket connected');
+  //       },
+  // };
+  private mounted() {
+    // (this as any).$socket.on('connect', () => {
+    //   console.log(123);
+    // });
   }
 }
 </script>
