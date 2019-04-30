@@ -46,25 +46,18 @@ export default class Message extends Vue {
     //     name: sessionStorage.getItem('user'),
     //     test: this.form.test,
     //   });
-
     //   this.form.test = '';
     // });
   }
 
   private mounted() {
-    // io((err, socket) => {
-    //   if (err) {
-    //     sessionStorage.removeItem('token');
-    //     return this.$router.push('/login');
-    //   }
-    //   socket.on('sysMessage', (data: string) => {
-    //     this.sysMessages.push(data);
-    //   });
+    this.$socket.on('sysMessage', (data: string) => {
+      this.sysMessages.push(data);
+    });
 
-    //   socket.on('message', (data: string) => {
-    //     this.messages.push(data);
-    //   });
-    // });
+    this.$socket.on('message', (data: string) => {
+      this.messages.push(data);
+    });
   }
 
   private S4() {

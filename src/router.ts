@@ -26,7 +26,7 @@ const route = new Router({
 });
 
 route.beforeEach((to, f, next) => {
-  const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem('user');
   if ((token && token.length > 0) || to.name === 'login') {
     next();
   } else {
