@@ -13,7 +13,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { userLogin } from '@/views/request/Request';
 import { ILoginParams } from '@/contracts/ICommon';
-import io from '../common/Socket';
 
 @Component({})
 export default class Login extends Vue {
@@ -42,18 +41,19 @@ export default class Login extends Vue {
       if (valid) {
         userLogin(this.loginParams).subscribe((item: any) => {
           console.log(item);
-          sessionStorage.setItem('token', item);
           sessionStorage.setItem('user', item);
 
-          io('http://127.0.0.1:3001', (err, socket) => {
-            if (err) {
-              sessionStorage.removeItem('token');
-              return this.$router.push('/login');
-            }
-            socket.emit('login', item);
-          });
+          // io('http://127.0.0.1:3001', (err, socket) => {
+          //   if (err) {
+          //     sessionStorage.removeItem('token');
+          //     return this.$router.push('/login');
+          //   }
+          //   socket.emit('login', item);
+          // });
+          this.$socket.init(item);
+          console.log(this.$socket);
 
-          this.$router.push('/message');
+          // this.$router.push('/message');
         });
       } else {
         console.log('error submit!!');

@@ -13,22 +13,11 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class App extends Vue {
-  constructor() {
-    super();
-
-    // (this as any).$socket.on('connect', () => {
-    //   console.log(123);
-    // });
-  }
-  // private sockets = {
-  //       connect: () => {
-  //           console.log('socket connected');
-  //       },
-  // };
   private mounted() {
-    // (this as any).$socket.on('connect', () => {
-    //   console.log(123);
-    // });
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      this.$socket.init(user);
+    }
   }
 }
 </script>
