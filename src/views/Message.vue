@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import io from '../common/Socket';
 
 @Component({})
 export default class Message extends Vue {
@@ -36,35 +37,35 @@ export default class Message extends Vue {
   };
 
   private onSubmit() {
-    // io((err, socket) => {
-    //   if (err) {
-    //     sessionStorage.removeItem('token');
-    //     return this.$router.push('/login');
-    //   }
-    //   socket.emit('message', {
-    //     id: this.guid(),
-    //     name: sessionStorage.getItem('user'),
-    //     test: this.form.test,
-    //   });
+    io((err, socket) => {
+      if (err) {
+        sessionStorage.removeItem('token');
+        return this.$router.push('/login');
+      }
+      socket.emit('message', {
+        id: this.guid(),
+        name: sessionStorage.getItem('user'),
+        test: this.form.test,
+      });
 
-    //   this.form.test = '';
-    // });
+      this.form.test = '';
+    });
   }
 
   private mounted() {
-    // io((err, socket) => {
-    //   if (err) {
-    //     sessionStorage.removeItem('token');
-    //     return this.$router.push('/login');
-    //   }
-    //   socket.on('sysMessage', (data: string) => {
-    //     this.sysMessages.push(data);
-    //   });
+    io((err, socket) => {
+      if (err) {
+        sessionStorage.removeItem('token');
+        return this.$router.push('/login');
+      }
+      socket.on('sysMessage', (data: string) => {
+        this.sysMessages.push(data);
+      });
 
-    //   socket.on('message', (data: string) => {
-    //     this.messages.push(data);
-    //   });
-    // });
+      socket.on('message', (data: string) => {
+        this.messages.push(data);
+      });
+    });
   }
 
   private S4() {

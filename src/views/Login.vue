@@ -15,6 +15,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { userLogin } from '@/views/request/Request';
 import { ILoginParams } from '@/contracts/ICommon';
+import io from '../common/Socket';
 
 @Component({})
 export default class Login extends Vue {
@@ -46,10 +47,12 @@ export default class Login extends Vue {
           sessionStorage.setItem('token', item);
           sessionStorage.setItem('user', item);
 
-          this.$store.commit('initSocket');
-
-          this.$socket.on('connect', () => {
-            console.log('ggg');
+          io('http://127.0.0.1:3001?token=abc', (err, socket) => {
+            if (err) {
+              sessionStorage.removeItem('token');
+              return this.$router.push('/login');
+            }
+            socket.emit('login', item);
           });
 
           this.$router.push('/message');
