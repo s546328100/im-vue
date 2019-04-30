@@ -35,6 +35,12 @@ import { Component, Vue } from 'vue-property-decorator';
     disconnect: () => {
       console.log('socket disconnect');
     },
+    login: (data: any) => {
+      console.log(data);
+    },
+    sysMessage: (data: any) => {
+      console.log(data);
+    },
   },
 })
 export default class Message extends Vue {
@@ -45,6 +51,8 @@ export default class Message extends Vue {
   };
 
   private onSubmit() {
+    console.log(this.$socket);
+    this.$socket.emit('message', 'popo');
     // io((err, socket) => {
     //   if (err) {
     //     sessionStorage.removeItem('token');
@@ -60,15 +68,15 @@ export default class Message extends Vue {
   }
 
   private mounted() {
-    this.$socket.on('sysMessage', (data: string) => {
-      this.sysMessages.push(data);
-    });
+    // this.$socket.emit('sysMessage', 'popo');
+    // this.$socket.on('sysMessage', (data: string) => {
+    //   this.sysMessages.push(data);
+    // });
     // io((err, socket) => {
     //   if (err) {
     //     sessionStorage.removeItem('token');
     //     return this.$router.push('/login');
     //   }
-
     //   socket.on('message', (data: string) => {
     //     this.messages.push(data);
     //   });

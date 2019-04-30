@@ -22,6 +22,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { userLogin } from '@/views/request/Request';
 import { ILoginParams } from '@/contracts/ICommon';
+import SocketIO from 'socket.io-client';
+import VueSocketIO from 'vue-socket.io';
 
 @Component({
   sockets: {
@@ -34,9 +36,9 @@ import { ILoginParams } from '@/contracts/ICommon';
     login: (data: any) => {
       console.log(data);
     },
-    sysMessage: (data: any) => {
-      console.log(data);
-    },
+    // sysMessage: (data: any) => {
+    //   console.log(data);
+    // },
   },
 })
 export default class Login extends Vue {
@@ -65,10 +67,29 @@ export default class Login extends Vue {
       if (valid) {
         userLogin(this.loginParams).subscribe((item: any) => {
           console.log(item);
-          sessionStorage.setItem('token', item);
+          // sessionStorage.setItem('token', item);
           sessionStorage.setItem('user', item);
 
+          if (!this.$socket || !this.$socket.connected) {
+            console.log(12399999999);
+            const socket = new VueSocketIO({
+              debug: true,
+              connection: SocketIO('http://127.0.0.1:3001', {
+                query: { token: sessionStorage.getItem('user') || '' },
+              }),
+              vuex: {
+                store: this.$store,
+                actionPrefix: 'SOCKET_',
+                mutationPrefix: 'SOCKET_',
+              },
+            });
+
+            Vue.use(socket);
+          }
+
           this.$socket.emit('login', item);
+
+          console.log(this.$socket);
 
           // this.$socket.on('login', (data: string) => {
           //   // this.sysMessages.push(data);
