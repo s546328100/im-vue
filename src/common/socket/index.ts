@@ -10,7 +10,7 @@ export class Socket {
     this.opts = opts;
   }
 
-  public init(token: string) {
+  public init(token: string, fn?: Function) {
     if (!this.socket || !this.socket.connected) {
       this.opts.query = { token };
       const socket = io(this.url, this.opts);
@@ -21,6 +21,7 @@ export class Socket {
 
       socket.on('disconnect', () => {
         console.log('disconnect!!!');
+        fn && fn();
       });
 
       this.socket = socket;

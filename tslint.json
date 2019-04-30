@@ -1,12 +1,8 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "linterOptions": {
-    "exclude": [
-      "node_modules/**"
-    ]
+    "exclude": ["node_modules/**"]
   },
   "rules": {
     "quotemark": [true, "single"],
@@ -19,6 +15,7 @@
     "no-var-requires": false,
     "only-arrow-functions": false,
     "ban-types": false,
-    "prefer-const": false
+    "prefer-const": false,
+    "no-unused-expression": false
   }
 }

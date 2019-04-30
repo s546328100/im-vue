@@ -50,7 +50,9 @@ export default class Login extends Vue {
           //   }
           //   socket.emit('login', item);
           // });
-          this.$socket.init(item);
+          this.$socket.init(item, () => {
+            console.log('user无效！');
+          });
           console.log(this.$socket);
 
           // this.$router.push('/message');

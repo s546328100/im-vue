@@ -16,7 +16,11 @@ export default class App extends Vue {
   private mounted() {
     const user = sessionStorage.getItem('user');
     if (user) {
-      this.$socket.init(user);
+      this.$socket.init(user, () => {
+        if (this.$route.name !== 'login') {
+          this.$router.push('/login');
+        }
+      });
     }
   }
 }
