@@ -22,6 +22,11 @@ const route = new Router({
       name: 'message',
       component: () => import('./views/Message.vue'),
     },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => import('./views/Chat.vue'),
+    },
   ],
 });
 

@@ -8,14 +8,17 @@
     <el-container>
       <el-main>
         聊天
-        <div class="triangle">
-          <ul v-for="message in messages" v-bind:key="message.id">
-            <li :class="message.classObject">
-              <div>{{ message.name }}</div>
-              <span>{{message.test}}</span>
-            </li>
-          </ul>
-        </div>
+        <ul id="messages">
+          <li class="right">
+            <img src="../image/user4.jpg">
+            <div>
+              <span>温恩</span>
+              <p style="color: #000000;">
+                <span>二人若若</span>
+              </p>
+            </div>
+          </li>
+        </ul>
       </el-main>
       <el-footer>
         <el-form :inline="true" :model="form">
@@ -43,7 +46,7 @@ export default class Message extends Vue {
   };
 
   private onSubmit() {
-    let data = {
+    let data: any = {
       id: this.guid(),
       name: sessionStorage.getItem('user'),
       test: this.form.test,
@@ -61,7 +64,7 @@ export default class Message extends Vue {
       }
     });
 
-    this.$socket.on('message', (data: string) => {
+    this.$socket.on('message', (data: any) => {
       console.log(data);
       data.classObject = { textLeft: true };
       this.messages.push(data);
@@ -181,5 +184,126 @@ li {
 .textRight {
   text-align: right;
 }
-</style>
 
+#messages {
+  height: 346px;
+  padding: 20px 10px 0px 10px;
+  overflow-y: auto;
+
+  /*滚动条样式*/
+  ::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 4px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  li {
+    list-style: none;
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+    }
+
+    p {
+      img {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+      }
+
+      .sendImg {
+        max-width: 300px;
+        max-height: 188px;
+        width: auto;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      span {
+        padding-top: 7px;
+      }
+    }
+
+    div > span {
+      display: block;
+      color: #555;
+      padding-left: 2px;
+    }
+
+    div {
+      p {
+        display: flex;
+        max-width: 300px;
+        height: auto;
+        padding: 10px;
+        margin-top: 5px;
+        word-wrap: break-word; /* 文本自动换行 */
+        font-size: 15px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.left {
+  img {
+    margin-right: 8px;
+  }
+
+  img,
+  div {
+    float: left;
+  }
+
+  span {
+    text-align: left;
+  }
+
+  p {
+    background-color: #d5d3d3;
+  }
+}
+
+.right {
+  img {
+    margin-left: 8px;
+  }
+
+  span {
+    text-align: right;
+  }
+
+  p,
+  img,
+  div {
+    float: right;
+  }
+
+  p {
+    background-color: #86bdf8;
+  }
+}
+</style>
