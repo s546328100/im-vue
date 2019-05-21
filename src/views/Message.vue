@@ -8,7 +8,14 @@
     <el-container>
       <el-main>
         聊天
-        <p v-for="message in messages" v-bind:key="message.id">{{ message.name }}：{{message.test}}</p>
+        <div class="triangle">
+          <ul v-for="message in messages" v-bind:key="message.id">
+            <li :class="message.classObject">
+              <div>{{ message.name }}</div>
+              <span>{{message.test}}</span>
+            </li>
+          </ul>
+        </div>
       </el-main>
       <el-footer>
         <el-form :inline="true" :model="form">
@@ -36,26 +43,27 @@ export default class Message extends Vue {
   };
 
   private onSubmit() {
-    // io((err, socket) => {
-    //   if (err) {
-    //     sessionStorage.removeItem('token');
-    //     return this.$router.push('/login');
-    //   }
-    //   socket.emit('message', {
-    //     id: this.guid(),
-    //     name: sessionStorage.getItem('user'),
-    //     test: this.form.test,
-    //   });
-    //   this.form.test = '';
-    // });
+    let data = {
+      id: this.guid(),
+      name: sessionStorage.getItem('user'),
+      test: this.form.test,
+    };
+    this.$socket.emit('message', data);
+    data.classObject = { textRight: true };
+    this.messages.push(data);
+    this.form.test = '';
   }
 
   private mounted() {
     this.$socket.on('sysMessage', (data: string) => {
-      this.sysMessages.push(data);
+      if (!this.sysMessages.includes(data)) {
+        this.sysMessages.push(data);
+      }
     });
 
     this.$socket.on('message', (data: string) => {
+      console.log(data);
+      data.classObject = { textLeft: true };
       this.messages.push(data);
     });
   }
@@ -108,6 +116,70 @@ export default class Message extends Vue {
   background-color: #e9eef3;
   color: #333;
   text-align: left;
+}
+
+.triangle {
+  margin: auto;
+}
+.triangle ul {
+  padding: 5px;
+}
+.triangle li {
+  padding: 0px;
+  margin-bottom: 0px;
+}
+.triangle li span {
+  position: relative;
+  top: 10px;
+  border-radius: 7px;
+  background-color: #a6e860;
+  padding: 6px 10px 8px 10px;
+  z-index: 1;
+}
+.triangle .textLeft span {
+  background-color: white;
+}
+.triangle li.textLeft:before {
+  // content: url('images/tx1.jpg');
+  box-sizing: border-box;
+  position: relative;
+  left: -10px;
+  top: 9px;
+}
+.triangle li.textLeft span:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right: 8px solid white;
+  position: absolute;
+  top: 8px;
+  left: -16px;
+}
+.triangle li.textRight:after {
+  // content: url('images/tx2.jpg');
+  box-sizing: border-box;
+  position: relative;
+  right: -10px;
+  top: 9px;
+}
+.triangle li.textRight span:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left: 8px solid #a6e860;
+  position: absolute;
+  top: 8px;
+  right: -16px;
+}
+li {
+  list-style: none;
+}
+.textRight {
+  text-align: right;
 }
 </style>
 

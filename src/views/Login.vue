@@ -64,5 +64,12 @@ export default class Login extends Vue {
       }
     });
   }
+
+  private mounted() {
+    let user = sessionStorage.getItem('user');
+    if (user) {
+      this.$router.push('/message');
+    }
+  }
 }
 </script>

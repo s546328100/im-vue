@@ -1,5 +1,11 @@
 import io from 'socket.io-client';
 
+declare module 'vue/types/vue' {
+  interface Vue {
+    $socket: Socket;
+  }
+}
+
 export class Socket {
   private socket: SocketIOClient.Socket | null = null;
   private url: string;
