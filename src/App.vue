@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="main">
     <!-- <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
@@ -28,33 +28,86 @@ export default class App extends Vue {
 
 
 <style lang="scss">
-// html,
-// body {
-//   height: 100%;
-//   width: 100%;
-//   margin: 0;
-//   padding: 0;
-// }
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
 
-// #app {
-//   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
-//   color: #2c3e50;
-//   height: 100%;
-//   width: 100%;
-//   margin: 0;
-//   padding: 0;
-// }
-// #nav {
-//   padding: 30px;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+body {
+  font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei,
+    \\5fae\8f6f\96c5\9ed1, Arial, sans-serif;
+  background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/img/2zrdI1g.jpg)
+    no-repeat 50%;
+  background-size: cover;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body,
+dd,
+dl,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+p,
+textarea,
+ul {
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+a,
+button,
+input,
+textarea {
+  outline: 0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #c3c3c3;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+@media (max-height: 800px), (max-width: 1000px) {
+  .main {
+    padding-top: 0;
+    height: 100%;
+  }
+
+  .main .copyright {
+    display: none;
+  }
+}
+
+.main {
+  // height: 80%;
+  min-height: 600px;
+  // padding-top: 100px;
+  -webkit-transition: padding 0.3s linear;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 </style>
