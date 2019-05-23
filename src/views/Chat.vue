@@ -95,10 +95,161 @@
             </div>
           </div>
         </div>
-        <div class="scroll-wrapper box_bd" style="position: absolute">
-          <div style="margin-bottom: 0px;margin-right: 0px;height: 486px;">456</div>
+        <div class="scroll-wrapper box_bd chat_bd scrollbar-dynamic" style="position: absolute">
+          <div
+            class="box_bd chat_bd scrollbar-dynamic scroll-content"
+            style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
+          >
+            <div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message me">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_default left">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message me">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_default left">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message me">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 消息 -->
+              <div>
+                <div class="clearfix">
+                  <div style="overflow: hidden;">
+                    <div class="message">
+                      <div class="message_system">
+                        <div class="content">19:34</div>
+                      </div>
+                      <img class="avatar" src="../image/user1.jpg" alt>
+                      <div class="content">
+                        <div class="bubble js_message_bubble ng-scope bubble_default left">
+                          <div class="bubble_cont">
+                            <div class="plain">
+                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>789</div>
+        <div class="box_ft">
+          <div class="toolbar">
+            <a class="web_wechat_face" href="javascript:;" title="表情"></a>
+            <a class="web_wechat_screencut" href="javascript:;" title="截屏"></a>
+            <a class="web_wechat_pic" href="javascript:;" title="图片和文件"></a>
+          </div>
+          <div class="content">
+            <pre class="flex edit_area" contenteditable-directive contenteditable="true"></pre>
+          </div>
+          <div class="action">
+            <span class="desc">按下Ctrl+Enter换行</span>
+            <a class="btn btn_send" href="javascript:;">发送</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -445,6 +596,41 @@ export default class Chat extends Vue {}
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  .box_ft {
+    height: 180px;
+    margin-right: 19px;
+    border-top: 1px solid #d6d6d6;
+
+    .toolbar {
+      height: 30px;
+      padding: 5px 17px;
+    }
+
+    .content {
+      .flex {
+        height: 6em;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-left: 20px;
+        outline: none;
+        border: 0;
+        font-size: 14px;
+      }
+    }
+
+    .action {
+      text-align: right;
+      margin-top: 5px;
+    }
+
+    .desc {
+      color: #888;
+      font-size: 12px;
+      margin-left: 10px;
+      margin-right: 7px;
+    }
+  }
 }
 
 .box_bd {
@@ -453,6 +639,189 @@ export default class Chat extends Vue {}
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.clearfix:after {
+  content: ' ';
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.message {
+  margin-bottom: 16px;
+  float: left;
+  width: 100%;
+
+  &.me {
+    float: right;
+    text-align: right;
+    clear: right;
+
+    .avatar {
+      float: right;
+    }
+
+    .content {
+      overflow: hidden;
+    }
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    float: left;
+    cursor: pointer;
+  }
+}
+
+.message_system {
+  text-align: center;
+  margin: 10px auto;
+  max-width: 50%;
+
+  .content {
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 18px;
+    color: #b2b2b2;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+  }
+}
+
+.bubble {
+  max-width: 500px;
+  min-height: 1em;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  margin: 0 10px;
+
+  &.bubble_primary {
+    background-color: #b2e281;
+  }
+}
+
+.bubble.right:after,
+.bubble.right:before {
+  left: 100%;
+}
+
+.bubble:after,
+.bubble:before {
+  position: absolute;
+  top: 14px;
+  border: 6px solid transparent;
+  content: ' ';
+}
+
+.bubble.bubble_primary.right.arrow_primary:before,
+.bubble.bubble_primary.right:after {
+  border-left-color: #b2e281;
+  border-left-width: 4px;
+}
+
+.bubble.right:after {
+  border-left-color: #fff;
+}
+.bubble.right:after,
+.bubble.right:before {
+  left: 100%;
+}
+
+.bubble:after,
+.bubble:before {
+  position: absolute;
+  top: 14px;
+  border: 6px solid transparent;
+  content: ' ';
+}
+
+.bubble.left:after,
+.bubble.left:before {
+  right: 100%;
+}
+
+.bubble.left:after {
+  border-right-color: #fff;
+  border-right-width: 4px;
+}
+
+.bubble.left:after,
+.bubble.left:before {
+  right: 100%;
+}
+
+.bubble.bubble_default {
+  background-color: #fff;
+}
+
+.bubble_cont {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 25px;
+
+  .plain {
+    padding: 9px 13px;
+  }
+}
+
+pre {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+// box_ft
+.box_ft {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+pre {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+a {
+  &.btn {
+    text-decoration: none;
+  }
+}
+
+.btn_send {
+  background-color: #fff;
+  color: #222;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding: 3px 20px;
+  font-size: 14px;
 }
 
 // i
@@ -565,5 +934,57 @@ export default class Chat extends Vue {}
   background-position: -451px -380px;
   -webkit-background-size: 487px 462px;
   background-size: 487px 462px;
+}
+
+.web_wechat_down_icon,
+.web_wechat_face {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.web_wechat_face {
+  width: 30px;
+  height: 30px;
+  background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/css/5af37c4a880a95586cd41c5b251d5562@1x.png)
+    no-repeat;
+  background-position: -404px -398px;
+  -webkit-background-size: 487px 462px;
+  background-size: 487px 462px;
+}
+
+.web_wechat_screencut,
+.web_wechat_search {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+}
+
+.web_wechat_screencut {
+  background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/css/5af37c4a880a95586cd41c5b251d5562@1x.png)
+    no-repeat;
+  background-position: -30px -432px;
+  -webkit-background-size: 487px 462px;
+  background-size: 487px 462px;
+}
+
+.web_wechat_pic,
+.web_wechat_profile_loc {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.web_wechat_pic {
+  width: 30px;
+  height: 30px;
+  background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/css/5af37c4a880a95586cd41c5b251d5562@1x.png)
+    no-repeat;
+  background-position: -120px -432px;
+  -webkit-background-size: 487px 462px;
+  background-size: 487px 462px;
+}
+
+.webuploader-container {
+  position: relative;
 }
 </style>
