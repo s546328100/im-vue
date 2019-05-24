@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="main">
+  <div id="app">
     <!-- <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
@@ -91,23 +91,7 @@ textarea {
   background-color: transparent;
 }
 
-@media (max-height: 800px), (max-width: 1000px) {
-  .main {
-    padding-top: 0;
-    height: 100%;
-  }
-
-  .main .copyright {
-    display: none;
-  }
-}
-
-.main {
-  // height: 80%;
-  min-height: 600px;
-  // padding-top: 100px;
-  -webkit-transition: padding 0.3s linear;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+#app {
+  height: 100%;
 }
 </style>

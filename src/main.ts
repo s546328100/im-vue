@@ -13,6 +13,8 @@ import {
   Aside,
   Main,
   Footer,
+  Col,
+  Row,
 } from 'element-ui';
 
 Vue.use(Input);
@@ -24,6 +26,8 @@ Vue.use(Header);
 Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Footer);
+Vue.use(Col);
+Vue.use(Row);
 
 Vue.config.productionTip = false;
 

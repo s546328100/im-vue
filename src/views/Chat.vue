@@ -1,81 +1,83 @@
 <template>
-  <div class="main_inner">
-    <div class="panel give_me">
-      <div class="header">
-        <div class="avatar">
-          <img class="img" src="../image/user1.jpg">
+  <div class="main">
+    <div class="main_inner">
+      <div class="panel give_me">
+        <div class="header">
+          <div class="avatar">
+            <img class="img" src="../image/user1.jpg">
+          </div>
+          <div class="info">
+            <h3 class="nickname">
+              <span class="display_name">污先森</span>
+              <a class="opt" href="javascript:;">
+                <i class="web_wechat_add"></i>
+              </a>
+            </h3>
+          </div>
         </div>
-        <div class="info">
-          <h3 class="nickname">
-            <span class="display_name">污先森</span>
-            <a class="opt" href="javascript:;">
-              <i class="web_wechat_add"></i>
+        <div class="search_bar">
+          <i class="web_wechat_search"></i>
+          <input type="text" class="frm_search" placeholder="搜索">
+        </div>
+        <div class="tab">
+          <div class="tab_item">
+            <a class="chat" title="聊天" href="#">
+              <i class="web_wechat_tab_chat web_wechat_tab_chat_hl"></i>
             </a>
-          </h3>
+          </div>
+          <div class="tab_item">
+            <a class="chat" title="阅读" href="#">
+              <i class="web_wechat_tab_public"></i>
+            </a>
+          </div>
+          <div class="tab_item">
+            <a class="chat" title="通讯录" href="#">
+              <i class="web_wechat_tab_friends"></i>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="search_bar">
-        <i class="web_wechat_search"></i>
-        <input type="text" class="frm_search" placeholder="搜索">
-      </div>
-      <div class="tab">
-        <div class="tab_item">
-          <a class="chat" title="聊天" href="#">
-            <i class="web_wechat_tab_chat web_wechat_tab_chat_hl"></i>
-          </a>
-        </div>
-        <div class="tab_item">
-          <a class="chat" title="阅读" href="#">
-            <i class="web_wechat_tab_public"></i>
-          </a>
-        </div>
-        <div class="tab_item">
-          <a class="chat" title="通讯录" href="#">
-            <i class="web_wechat_tab_friends"></i>
-          </a>
-        </div>
-      </div>
-      <div class="nav_view" style="visibility: visible; width: auto;">
-        <div class="scroll-wrapper chat_list scrollbar-dynamic" style="position: relative;">
-          <div
-            class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible"
-            style="margin-bottom: 0px; margin-right: 0px; height: 563px;"
-          >
-            <div>
+        <div class="nav_view" style="visibility: visible; width: auto;">
+          <div class="scroll-wrapper chat_list scrollbar-dynamic" style="position: relative;">
+            <div
+              class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible"
+              style="margin-bottom: 0px; margin-right: 0px; height: 563px;"
+            >
               <div>
-                <div class="chat_item slide-left active">
-                  <div class="ext">
-                    <p class="attr">14:05</p>
-                  </div>
-                  <div class="avatar">
-                    <img class="img" src="../image/user2.jpg" alt>
-                    <i class="icon web_wechat_reddot_middle">1</i>
-                  </div>
-                  <div class="info">
-                    <h3 class="nickname">
-                      <span class="nickname_text">大只猪</span>
-                    </h3>
-                    <p class="msg">
-                      <span>哈哈哈</span>
-                    </p>
+                <div>
+                  <div class="chat_item slide-left active">
+                    <div class="ext">
+                      <p class="attr">14:05</p>
+                    </div>
+                    <div class="avatar">
+                      <img class="img" src="../image/user2.jpg" alt>
+                      <i class="icon web_wechat_reddot_middle">1</i>
+                    </div>
+                    <div class="info">
+                      <h3 class="nickname">
+                        <span class="nickname_text">大只猪</span>
+                      </h3>
+                      <p class="msg">
+                        <span>哈哈哈</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div class="chat_item slide-left active">
-                  <div class="ext">
-                    <p class="attr">14:05</p>
-                  </div>
-                  <div class="avatar">
-                    <img class="img" src="../image/user3.jpg" alt>
-                  </div>
-                  <div class="info">
-                    <h3 class="nickname">
-                      <span class="nickname_text">大只猪</span>
-                    </h3>
-                    <p class="msg">
-                      <span>哈哈哈</span>
-                    </p>
+                <div>
+                  <div class="chat_item slide-left active">
+                    <div class="ext">
+                      <p class="attr">14:05</p>
+                    </div>
+                    <div class="avatar">
+                      <img class="img" src="../image/user3.jpg" alt>
+                    </div>
+                    <div class="info">
+                      <h3 class="nickname">
+                        <span class="nickname_text">大只猪</span>
+                      </h3>
+                      <p class="msg">
+                        <span>哈哈哈</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,38 +85,38 @@
           </div>
         </div>
       </div>
-    </div>
-    <div style="height: 100%">
-      <div class="box chat">
-        <div class="box_hd">
-          <div class="title_wrap">
-            <div class="title poi">
-              <a class="title_name">水熊-互联网</a>
-              <span>(108)</span>
-              <i class="web_wechat_down_icon"></i>
+      <div style="height: 100%">
+        <div class="box chat">
+          <div class="box_hd">
+            <div class="title_wrap">
+              <div class="title poi">
+                <a class="title_name">水熊-互联网</a>
+                <span>(108)</span>
+                <i class="web_wechat_down_icon"></i>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="scroll-wrapper box_bd chat_bd scrollbar-dynamic" style="position: absolute">
-          <div
-            class="box_bd chat_bd scrollbar-dynamic scroll-content"
-            style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
-          >
-            <div>
-              <!-- 消息 -->
+          <div class="scroll-wrapper box_bd chat_bd scrollbar-dynamic" style="position: absolute">
+            <div
+              class="box_bd chat_bd scrollbar-dynamic scroll-content"
+              style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
+            >
               <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message me">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message me">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -122,21 +124,21 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 消息 -->
-              <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_default left">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_default left">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -144,21 +146,21 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 消息 -->
-              <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message me">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message me">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -166,21 +168,21 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 消息 -->
-              <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_default left">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_default left">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -188,21 +190,21 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 消息 -->
-              <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message me">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_primary right">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message me">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -210,21 +212,21 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 消息 -->
-              <div>
-                <div class="clearfix">
-                  <div style="overflow: hidden;">
-                    <div class="message">
-                      <div class="message_system">
-                        <div class="content">19:34</div>
-                      </div>
-                      <img class="avatar" src="../image/user1.jpg" alt>
-                      <div class="content">
-                        <div class="bubble js_message_bubble ng-scope bubble_default left">
-                          <div class="bubble_cont">
-                            <div class="plain">
-                              <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                <!-- 消息 -->
+                <div>
+                  <div class="clearfix">
+                    <div style="overflow: hidden;">
+                      <div class="message">
+                        <div class="message_system">
+                          <div class="content">19:34</div>
+                        </div>
+                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <div class="content">
+                          <div class="bubble js_message_bubble ng-scope bubble_default left">
+                            <div class="bubble_cont">
+                              <div class="plain">
+                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -235,19 +237,19 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="box_ft">
-          <div class="toolbar">
-            <a class="web_wechat_face" href="javascript:;" title="表情"></a>
-            <a class="web_wechat_screencut" href="javascript:;" title="截屏"></a>
-            <a class="web_wechat_pic" href="javascript:;" title="图片和文件"></a>
-          </div>
-          <div class="content">
-            <pre class="flex edit_area" contenteditable-directive contenteditable="true"></pre>
-          </div>
-          <div class="action">
-            <span class="desc">按下Ctrl+Enter换行</span>
-            <a class="btn btn_send" href="javascript:;">发送</a>
+          <div class="box_ft">
+            <div class="toolbar">
+              <a class="web_wechat_face" href="javascript:;" title="表情"></a>
+              <a class="web_wechat_screencut" href="javascript:;" title="截屏"></a>
+              <a class="web_wechat_pic" href="javascript:;" title="图片和文件"></a>
+            </div>
+            <div class="content">
+              <pre class="flex edit_area" contenteditable-directive contenteditable="true"></pre>
+            </div>
+            <div class="action">
+              <span class="desc">按下Ctrl+Enter换行</span>
+              <a class="btn btn_send" href="javascript:;">发送</a>
+            </div>
           </div>
         </div>
       </div>
@@ -263,6 +265,26 @@ export default class Chat extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+@media (max-height: 800px), (max-width: 1000px) {
+  .main {
+    padding-top: 0;
+    height: 100%;
+  }
+
+  .main .copyright {
+    display: none;
+  }
+}
+
+.main {
+  // height: 80%;
+  min-height: 600px;
+  // padding-top: 100px;
+  -webkit-transition: padding 0.3s linear;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .main_inner {
   max-width: 1000px;
   min-width: 800px;

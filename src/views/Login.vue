@@ -1,18 +1,34 @@
 <template>
-  <el-form :model="loginParams" status-icon :rules="rules" ref="ruleForm" label-width="100px">
-    <el-form-item label="昵称" prop="name">
-      <el-input type="name" v-model="loginParams.name" autocomplete="off"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="login">
+    <div class="login_box">
+      <el-form
+        :inline="true"
+        class="form"
+        :model="loginParams"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+      >
+        <el-form-item prop="name">
+          <el-input type="name" v-model="loginParams.name" autocomplete="off" placeholder="昵称"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="submitForm('ruleForm')"
+            :loading="loading"
+          >{{loginState.text}}</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { userLogin } from '@/views/request/Request';
 import { ILoginParams } from '@/contracts/ICommon';
+import { timer } from 'rxjs';
 
 @Component({})
 export default class Login extends Vue {
@@ -21,12 +37,22 @@ export default class Login extends Vue {
     // password: '',
   };
 
+  public loginState = {
+    invalid: false,
+    text: '进入',
+  };
+
+  public loading = false;
+
   public rules = {
     name: [
       {
         validator: (rule: any, value: string, callback: any) => {
+          console.log(this.loginState);
           if (value === '') {
-            callback(new Error('请输入昵称'));
+            callback(new Error('请输入昵称！'));
+          } else if (this.loginState.invalid) {
+            callback(new Error('昵称无效！'));
           } else {
             callback();
           }
@@ -40,23 +66,26 @@ export default class Login extends Vue {
     (this.$refs[formName] as any).validate((valid: any) => {
       if (valid) {
         userLogin(this.loginParams).subscribe((item: any) => {
-          console.log(item);
           sessionStorage.setItem('user', item);
-
-          // io('http://127.0.0.1:3001', (err, socket) => {
-          //   if (err) {
-          //     sessionStorage.removeItem('token');
-          //     return this.$router.push('/login');
-          //   }
-          //   socket.emit('login', item);
-          // });
           this.$socket.init(item, () => {
             console.log('user无效！');
+            this.loginState.invalid = true;
+            this.loginState.text = '进入中';
             sessionStorage.removeItem('user');
-            this.$router.push('/login');
+            if (this.$router.history.current.name !== 'login') {
+              this.$router.push('/login');
+            }
+            return;
           });
-
-          this.$router.push('/message');
+          this.loading = true;
+          timer(1000).subscribe((_) => {
+            if (!this.loginState.invalid) {
+              this.$router.push('/chat');
+            } else {
+              (this.$refs[formName] as any).validateField('name');
+              this.loading = false;
+            }
+          });
         });
       } else {
         console.log('error submit!!');
@@ -65,11 +94,54 @@ export default class Login extends Vue {
     });
   }
 
+  @Watch('loginParams.name')
+  private name(value) {
+    if (!value) {
+      this.loginState.invalid = false;
+      this.loginState.text = '进入';
+      (this.$refs.ruleForm as any).resetFields();
+    }
+  }
+
   private mounted() {
     let user = sessionStorage.getItem('user');
     if (user) {
-      this.$router.push('/message');
+      this.$router.push('/chat');
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.login {
+  display: block;
+  height: 100%;
+  min-width: 860px;
+  min-height: 700px;
+  overflow: auto;
+  position: relative;
+}
+
+.login_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -190px;
+  margin-top: -270px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background-color: #fff;
+  width: 380px;
+  height: 380px;
+  box-shadow: 0 2px 10px #999;
+  -moz-box-shadow: #999 0 2px 10px;
+  -webkit-box-shadow: #999 0 2px 10px;
+
+  .form {
+    position: relative;
+    top: 43%;
+    text-align: center;
+  }
+}
+</style>
