@@ -84,24 +84,28 @@
           </div>
           <div class="scroll-wrapper box_bd chat_bd scrollbar-dynamic" style="position: absolute">
             <div
+              id="box"
               class="box_bd chat_bd scrollbar-dynamic scroll-content"
               style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
             >
               <div>
                 <!-- 消息 start me -->
-                <!-- <div>
+                <div v-for="(message, index) in messages" v-bind:key="index">
                   <div class="clearfix">
                     <div style="overflow: hidden;">
-                      <div class="message me">
+                      <div class="message" :class="{me: message.me}">
                         <div class="message_system">
-                          <div class="content">19:34</div>
+                          <div class="content">{{message.time}}</div>
                         </div>
-                        <img class="avatar" src="../image/user1.jpg" alt>
+                        <img class="avatar" :src="message.avatar" alt>
                         <div class="content">
-                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
+                          <div
+                            class="bubble js_message_bubble ng-scope bubble_primary"
+                            :class="{right: message.me, left: !message.me}"
+                          >
                             <div class="bubble_cont">
                               <div class="plain">
-                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
+                                <pre class="js_message_plain ng-binding">{{message.content}}</pre>
                               </div>
                             </div>
                           </div>
@@ -109,7 +113,7 @@
                       </div>
                     </div>
                   </div>
-                </div>-->
+                </div>
                 <!-- 消息 end -->
                 <!-- 消息 start left -->
                 <!-- <div>
@@ -186,10 +190,29 @@ export default class Chat extends Vue {
     number: 0,
   };
 
+  public messages: any = [];
+
   public inputTxtArea = '';
 
   public sendTextMessage() {
-    console.log(document.getElementById('inputTxtArea')!.innerText);
+    let inputTxtArea = document.getElementById('inputTxtArea')!;
+    if (!inputTxtArea.innerText) {
+      return;
+    }
+    this.messages.push({
+      avatar: require(`../image/user${Math.floor(Math.random() * 4) + 1}.jpg`),
+      content: inputTxtArea.innerText,
+      time: '19:48',
+      me: true,
+    });
+    inputTxtArea.innerHTML = '';
+    // 滚动条总是在最底部
+    document.getElementById('box').scrollTop = document.getElementById(
+      'box',
+    ).scrollHeight + 500;
+    console.log(document.getElementById(
+      'box',
+    ).scrollHeight);
   }
 
   public editAreaKeydown(e: KeyboardEvent) {
@@ -222,7 +245,7 @@ export default class Chat extends Vue {
         // 滚动条总是在最底部
         inputTxtArea.scrollTop = inputTxtArea.scrollHeight;
       } else {
-        console.log(document.getElementById('inputTxtArea')!.innerText);
+        this.sendTextMessage();
         e.preventDefault();
         return false;
       }
