@@ -2,19 +2,21 @@
   <div class="main">
     <div class="main_inner">
       <div class="panel give_me">
+        <!-- header start -->
         <div class="header">
           <div class="avatar">
-            <img class="img" src="../image/user1.jpg">
+            <img class="img" :src="user.avatar">
           </div>
           <div class="info">
             <h3 class="nickname">
-              <span class="display_name">污先森</span>
+              <span class="display_name">{{user.name}}</span>
               <a class="opt" href="javascript:;">
                 <i class="web_wechat_add"></i>
               </a>
             </h3>
           </div>
         </div>
+        <!-- header end -->
         <div class="search_bar">
           <i class="web_wechat_search"></i>
           <input type="text" class="frm_search" placeholder="搜索">
@@ -43,43 +45,27 @@
               style="margin-bottom: 0px; margin-right: 0px; height: 563px;"
             >
               <div>
-                <div>
+                <!-- chatItem start -->
+                <div v-for="(chatItem, index) in chatItems" v-bind:key="index">
                   <div class="chat_item slide-left active">
                     <div class="ext">
-                      <p class="attr">14:05</p>
+                      <!-- <p class="attr">14:05</p> -->
                     </div>
                     <div class="avatar">
-                      <img class="img" src="../image/user2.jpg" alt>
-                      <i class="icon web_wechat_reddot_middle">1</i>
+                      <img class="img" :src="chatItem.avatar" alt>
+                      <!-- <i class="icon web_wechat_reddot_middle">1</i> -->
                     </div>
                     <div class="info">
                       <h3 class="nickname">
-                        <span class="nickname_text">大只猪</span>
+                        <span class="nickname_text">{{chatItem.name}}</span>
                       </h3>
                       <p class="msg">
-                        <span>哈哈哈</span>
+                        <!-- <span>哈哈哈</span> -->
                       </p>
                     </div>
                   </div>
                 </div>
-                <div>
-                  <div class="chat_item slide-left active">
-                    <div class="ext">
-                      <p class="attr">14:05</p>
-                    </div>
-                    <div class="avatar">
-                      <img class="img" src="../image/user3.jpg" alt>
-                    </div>
-                    <div class="info">
-                      <h3 class="nickname">
-                        <span class="nickname_text">大只猪</span>
-                      </h3>
-                      <p class="msg">
-                        <span>哈哈哈</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <!-- end -->
               </div>
             </div>
           </div>
@@ -90,8 +76,8 @@
           <div class="box_hd">
             <div class="title_wrap">
               <div class="title poi">
-                <a class="title_name">水熊-互联网</a>
-                <span>(108)</span>
+                <a class="title_name">{{currChatItem.name}}&nbsp;</a>
+                <span>({{currChatItem.number}})&nbsp;</span>
                 <i class="web_wechat_down_icon"></i>
               </div>
             </div>
@@ -102,8 +88,8 @@
               style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
             >
               <div>
-                <!-- 消息 -->
-                <div>
+                <!-- 消息 start me -->
+                <!-- <div>
                   <div class="clearfix">
                     <div style="overflow: hidden;">
                       <div class="message me">
@@ -123,9 +109,10 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 消息 -->
-                <div>
+                </div>-->
+                <!-- 消息 end -->
+                <!-- 消息 start left -->
+                <!-- <div>
                   <div class="clearfix">
                     <div style="overflow: hidden;">
                       <div class="message">
@@ -145,95 +132,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 消息 -->
-                <div>
-                  <div class="clearfix">
-                    <div style="overflow: hidden;">
-                      <div class="message me">
-                        <div class="message_system">
-                          <div class="content">19:34</div>
-                        </div>
-                        <img class="avatar" src="../image/user1.jpg" alt>
-                        <div class="content">
-                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
-                            <div class="bubble_cont">
-                              <div class="plain">
-                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 消息 -->
-                <div>
-                  <div class="clearfix">
-                    <div style="overflow: hidden;">
-                      <div class="message">
-                        <div class="message_system">
-                          <div class="content">19:34</div>
-                        </div>
-                        <img class="avatar" src="../image/user1.jpg" alt>
-                        <div class="content">
-                          <div class="bubble js_message_bubble ng-scope bubble_default left">
-                            <div class="bubble_cont">
-                              <div class="plain">
-                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 消息 -->
-                <div>
-                  <div class="clearfix">
-                    <div style="overflow: hidden;">
-                      <div class="message me">
-                        <div class="message_system">
-                          <div class="content">19:34</div>
-                        </div>
-                        <img class="avatar" src="../image/user1.jpg" alt>
-                        <div class="content">
-                          <div class="bubble js_message_bubble ng-scope bubble_primary right">
-                            <div class="bubble_cont">
-                              <div class="plain">
-                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 消息 -->
-                <div>
-                  <div class="clearfix">
-                    <div style="overflow: hidden;">
-                      <div class="message">
-                        <div class="message_system">
-                          <div class="content">19:34</div>
-                        </div>
-                        <img class="avatar" src="../image/user1.jpg" alt>
-                        <div class="content">
-                          <div class="bubble js_message_bubble ng-scope bubble_default left">
-                            <div class="bubble_cont">
-                              <div class="plain">
-                                <pre class="js_message_plain ng-binding">呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无无</pre>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </div>-->
+                <!-- 消息 end -->
               </div>
             </div>
           </div>
@@ -244,11 +144,17 @@
               <a class="web_wechat_pic" href="javascript:;" title="图片和文件"></a>
             </div>
             <div class="content">
-              <pre class="flex edit_area" contenteditable-directive contenteditable="true"></pre>
+              <pre
+                class="flex edit_area"
+                @keydown="editAreaKeydown($event)"
+                contenteditable-directive
+                contenteditable="true"
+                id="inputTxtArea"
+              ></pre>
             </div>
             <div class="action">
               <span class="desc">按下Ctrl+Enter换行</span>
-              <a class="btn btn_send" href="javascript:;">发送</a>
+              <a class="btn btn_send" href="javascript:;" @click="sendTextMessage">发送</a>
             </div>
           </div>
         </div>
@@ -261,7 +167,99 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Chat extends Vue {}
+export default class Chat extends Vue {
+  public user = {
+    name: sessionStorage.getItem('user'),
+    avatar: require(`../image/user${Math.floor(Math.random() * 4) + 1}.jpg`),
+  };
+
+  public chatItems = [
+    {
+      name: '公共聊天室',
+      avatar: require('../image/bg3.jpg'),
+      number: 0,
+    },
+  ];
+
+  public currChatItem = {
+    name: '公共聊天室',
+    number: 0,
+  };
+
+  public inputTxtArea = '';
+
+  public sendTextMessage() {
+    console.log(document.getElementById('inputTxtArea')!.innerText);
+  }
+
+  public editAreaKeydown(e: KeyboardEvent) {
+    if (e.keyCode === 13) {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+        console.log(123123);
+        let inputTxtArea = document.getElementById('inputTxtArea')!;
+        if (this.browserType() === 'IE' || this.browserType() === 'Edge') {
+          let div = document.createElement('div');
+          inputTxtArea.appendChild(div);
+        } else if (this.browserType() === 'FF') {
+          let br = document.createElement('br');
+          inputTxtArea.appendChild(br);
+        } else {
+          let br = document.createElement('br');
+          let div = document.createElement('div');
+          div.appendChild(br);
+          inputTxtArea.appendChild(div);
+        }
+        let o = inputTxtArea.lastChild!;
+        let textbox = inputTxtArea;
+        let sel = window.getSelection()!;
+        let range = document.createRange()!;
+        range.selectNodeContents(textbox);
+        range.collapse(false);
+        range.setEndAfter(o);
+        range.setStartAfter(o);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        // 滚动条总是在最底部
+        inputTxtArea.scrollTop = inputTxtArea.scrollHeight;
+      } else {
+        console.log(document.getElementById('inputTxtArea')!.innerText);
+        e.preventDefault();
+        return false;
+      }
+    }
+  }
+
+  private browserType() {
+    let userAgent = navigator.userAgent; // 取得浏览器的userAgent字符串
+    let isOpera = false;
+    if (userAgent.indexOf('Edge') > -1) {
+      return 'Edge';
+    }
+    if (userAgent.indexOf('.NET') > -1) {
+      return 'IE';
+    }
+    if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) {
+      isOpera = true;
+      return 'Opera';
+    } // 判断是否Opera浏览器
+    if (userAgent.indexOf('Firefox') > -1) {
+      return 'FF';
+    } // 判断是否Firefox浏览器
+    if (userAgent.indexOf('Chrome') > -1) {
+      return 'Chrome';
+    }
+    if (userAgent.indexOf('Safari') > -1) {
+      return 'Safari';
+    } // 判断是否Safari浏览器
+    if (
+      userAgent.indexOf('compatible') > -1 &&
+      userAgent.indexOf('MSIE') > -1 &&
+      !isOpera
+    ) {
+      return 'IE';
+    } // 判断是否IE浏览器
+  }
+}
 </script>
 
 <style lang="scss" scoped>

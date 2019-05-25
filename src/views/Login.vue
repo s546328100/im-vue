@@ -72,7 +72,7 @@ export default class Login extends Vue {
             this.loginState.invalid = true;
             this.loginState.text = '进入中';
             sessionStorage.removeItem('user');
-            if (this.$router.history.current.name !== 'login') {
+            if ((this as any).$router.history.current.name !== 'login') {
               this.$router.push('/login');
             }
             return;
@@ -95,7 +95,7 @@ export default class Login extends Vue {
   }
 
   @Watch('loginParams.name')
-  private name(value) {
+  private name(value: string) {
     if (!value) {
       this.loginState.invalid = false;
       this.loginState.text = '进入';
