@@ -67,32 +67,33 @@ export default class Login extends Vue {
       if (valid) {
         this.loading = true;
         userLogin(this.loginParams).subscribe((item: any) => {
-          if (item.code !== 0) {
+          if (item && JSON.stringify(item) !== '{}') {
+            sessionStorage.setItem('user', item);
+            this.$socket.init(item, () => {
+              console.log('user无效！');
+              this.loginState.invalid = true;
+              this.loginState.text = '进入中';
+              sessionStorage.removeItem('user');
+              if ((this as any).$router.history.current.name !== 'login') {
+                this.$router.push('/login');
+              }
+              return;
+            });
+
+            timer(1000).subscribe((_) => {
+              if (!this.loginState.invalid) {
+                this.$router.push('/chat');
+              } else {
+                (this.$refs[formName] as any).validateField('name');
+                this.loading = false;
+              }
+            });
+          } else {
             this.loginState.invalid = true;
             (this.$refs[formName] as any).validateField('name');
             this.loading = false;
             return;
           }
-          sessionStorage.setItem('user', item);
-          this.$socket.init(item, () => {
-            console.log('user无效！');
-            this.loginState.invalid = true;
-            this.loginState.text = '进入中';
-            sessionStorage.removeItem('user');
-            if ((this as any).$router.history.current.name !== 'login') {
-              this.$router.push('/login');
-            }
-            return;
-          });
-
-          timer(1000).subscribe((_) => {
-            if (!this.loginState.invalid) {
-              this.$router.push('/chat');
-            } else {
-              (this.$refs[formName] as any).validateField('name');
-              this.loading = false;
-            }
-          });
         });
       } else {
         console.log('error submit!!');
