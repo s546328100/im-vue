@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div class="login_box">
+    <div class="login_box" @keydown="editAreaKeydown($event)">
       <el-form
         :inline="true"
         class="form"
@@ -65,7 +65,14 @@ export default class Login extends Vue {
   public submitForm(formName: string) {
     (this.$refs[formName] as any).validate((valid: any) => {
       if (valid) {
+        this.loading = true;
         userLogin(this.loginParams).subscribe((item: any) => {
+          if (item.code !== 0) {
+            this.loginState.invalid = true;
+            (this.$refs[formName] as any).validateField('name');
+            this.loading = false;
+            return;
+          }
           sessionStorage.setItem('user', item);
           this.$socket.init(item, () => {
             console.log('user无效！');
@@ -77,7 +84,7 @@ export default class Login extends Vue {
             }
             return;
           });
-          this.loading = true;
+
           timer(1000).subscribe((_) => {
             if (!this.loginState.invalid) {
               this.$router.push('/chat');
@@ -94,12 +101,14 @@ export default class Login extends Vue {
     });
   }
 
-  @Watch('loginParams.name')
-  private name(value: string) {
-    if (!value) {
-      this.loginState.invalid = false;
-      this.loginState.text = '进入';
-      (this.$refs.ruleForm as any).resetFields();
+  public editAreaKeydown(e: KeyboardEvent) {
+    if (e.keyCode === 8) {
+      if (this.loginParams.name) {
+        this.loginParams.name = '';
+        this.loginState.invalid = false;
+        this.loginState.text = '进入';
+        (this.$refs.ruleForm as any).resetFields();
+      }
     }
   }
 

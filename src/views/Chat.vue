@@ -95,13 +95,13 @@
                     <div style="overflow: hidden;">
                       <div class="message" :class="{me: message.me}">
                         <div class="message_system">
-                          <div class="content">{{message.time}}</div>
+                          <div class="content">{{new Date(message.time).toLocaleTimeString()}}</div>
                         </div>
                         <img class="avatar" :src="message.avatar" alt>
                         <div class="content">
                           <div
-                            class="bubble js_message_bubble ng-scope bubble_primary"
-                            :class="{right: message.me, left: !message.me}"
+                            class="bubble js_message_bubble ng-scope"
+                            :class="{right: message.me, left: !message.me, bubble_primary: message.me, bubble_default: !message.me}"
                           >
                             <div class="bubble_cont">
                               <div class="plain">
@@ -168,7 +168,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component({})
 export default class Chat extends Vue {
@@ -199,20 +199,8 @@ export default class Chat extends Vue {
     if (!inputTxtArea.innerText) {
       return;
     }
-    this.messages.push({
-      avatar: require(`../image/user${Math.floor(Math.random() * 4) + 1}.jpg`),
-      content: inputTxtArea.innerText,
-      time: '19:48',
-      me: true,
-    });
+    this.$socket.emit('message', inputTxtArea.innerText);
     inputTxtArea.innerHTML = '';
-    // 滚动条总是在最底部
-    document.getElementById('box').scrollTop = document.getElementById(
-      'box',
-    ).scrollHeight + 500;
-    console.log(document.getElementById(
-      'box',
-    ).scrollHeight);
   }
 
   public editAreaKeydown(e: KeyboardEvent) {
@@ -281,6 +269,22 @@ export default class Chat extends Vue {
     ) {
       return 'IE';
     } // 判断是否IE浏览器
+  }
+
+  private mounted() {
+    this.$socket.on('message', (data: any) => {
+      this.messages.push({
+        avatar: require(`../image/user${Math.floor(Math.random() * 4) +
+          1}.jpg`),
+        ...data,
+      });
+
+      // 滚动条总是在最底部
+      this.$nextTick(() => {
+        let box = document.getElementById('box')!;
+        box.scrollTop = box.scrollHeight;
+      });
+    });
   }
 }
 </script>
