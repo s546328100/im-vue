@@ -8,6 +8,7 @@ export interface IUser {
 }
 
 export interface IMessage {
+  name: string;
   content: string;
   time: string;
   me: boolean;

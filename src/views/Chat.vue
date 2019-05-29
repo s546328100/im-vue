@@ -49,7 +49,7 @@
                 <div v-for="(chatItem, index) in chatItems" v-bind:key="index">
                   <div class="chat_item slide-left active">
                     <div class="ext">
-                      <!-- <p class="attr">14:05</p> -->
+                      <p class="attr" v-if="chatItem.time">{{dateFormat(chatItem.time)}}</p>
                     </div>
                     <div class="avatar">
                       <img class="img" :src="chatItem.avatar" alt>
@@ -59,8 +59,8 @@
                       <h3 class="nickname">
                         <span class="nickname_text">{{chatItem.name}}</span>
                       </h3>
-                      <p class="msg">
-                        <!-- <span>哈哈哈</span> -->
+                      <p class="msg" v-if="messages.length">
+                        <span>{{chatItem.msg}}</span>
                       </p>
                     </div>
                   </div>
@@ -95,11 +95,14 @@
                     <div style="overflow: hidden;">
                       <div class="message" :class="{me: message.me}">
                         <div class="message_system" v-if="message.type === 'sys' || message.sys">
-                          <div class="content">{{new Date(message.time).toLocaleTimeString()}}</div>
+                          <div
+                            class="content"
+                          >{{message.type === 'user' ? dateFormat(message.time): message.content}}</div>
                         </div>
                         <template v-if="message.type === 'user'">
                           <img class="avatar" :src="message.avatar" alt>
                           <div class="content">
+                            <h4 class="nickname" v-if="!message.me">{{message.name}}</h4>
                             <div
                               class="bubble js_message_bubble ng-scope"
                               :class="{right: message.me, left: !message.me, bubble_primary: message.me, bubble_default: !message.me}"
@@ -171,7 +174,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { getUser } from '../views/request/Request';
+import { getUser, getUserCount } from '../views/request/Request';
 import { IMessage, IUser } from '../contracts/ICommon';
 
 @Component({})
@@ -183,6 +186,8 @@ export default class Chat extends Vue {
       name: '公共聊天室',
       avatar: require('../image/liaotian.jpg'),
       number: 0,
+      time: '',
+      msg: '',
     },
   ];
 
@@ -192,8 +197,6 @@ export default class Chat extends Vue {
   };
 
   public messages: IMessage[] = [];
-
-  public inputTxtArea = '';
 
   public sendTextMessage() {
     let inputTxtArea = document.getElementById('inputTxtArea')!;
@@ -272,9 +275,20 @@ export default class Chat extends Vue {
     } // 判断是否IE浏览器
   }
 
+  private dateFormat(dateStr: string) {
+    const date = new Date(dateStr);
+    return date.getHours() + ':' + date.getMinutes();
+  }
+
   private mounted() {
-    getUser({name: sessionStorage.getItem('user')!}).subscribe((item: IUser) => {
-      this.user = item;
+    getUser({ name: sessionStorage.getItem('user')! }).subscribe(
+      (item: IUser) => {
+        this.user = item;
+      },
+    );
+
+    getUserCount().subscribe((item: number) => {
+      this.currChatItem.number = item;
     });
 
     this.$socket.on('message', (data: IMessage) => {
@@ -289,8 +303,13 @@ export default class Chat extends Vue {
           data.sys = false;
         }
       }
-      console.log(data);
+
       this.messages.push(data);
+
+      Object.assign(this.chatItems[0], {
+        time: data.time,
+        msg: (data.type === 'user' ? data.name + '：' : '') + data.content,
+      });
 
       // 滚动条总是在最底部
       this.$nextTick(() => {
@@ -736,6 +755,20 @@ export default class Chat extends Vue {
     -webkit-border-radius: 2px;
     float: left;
     cursor: pointer;
+  }
+
+  .nickname {
+    font-weight: 400;
+    padding-left: 10px;
+    font-size: 12px;
+    height: 22px;
+    line-height: 24px;
+    color: #4f4f4f;
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
   }
 }
 
