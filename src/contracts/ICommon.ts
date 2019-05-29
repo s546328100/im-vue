@@ -14,4 +14,5 @@ export interface IMessage {
   me: boolean;
   type: string;
   sys: boolean;
+  new: number;
 }

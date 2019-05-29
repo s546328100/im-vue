@@ -280,6 +280,10 @@ export default class Chat extends Vue {
     return date.getHours() + ':' + date.getMinutes();
   }
 
+  get count() {
+    return this.$store.state.count;
+  }
+
   private mounted() {
     getUser({ name: sessionStorage.getItem('user')! }).subscribe(
       (item: IUser) => {
@@ -310,6 +314,8 @@ export default class Chat extends Vue {
         time: data.time,
         msg: (data.type === 'user' ? data.name + '：' : '') + data.content,
       });
+
+      if (data.type === 'sys' && data.new) this.currChatItem.number += data.new;
 
       // 滚动条总是在最底部
       this.$nextTick(() => {

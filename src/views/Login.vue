@@ -104,6 +104,8 @@ export default class Login extends Vue {
   }
 
   public editAreaKeydown(e: KeyboardEvent) {
+    this.loginState.invalid = false;
+
     if (e.keyCode === 8) {
       if (this.loginParams.name) {
         this.loginParams.name = '';
