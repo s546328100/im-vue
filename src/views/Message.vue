@@ -10,7 +10,7 @@
         聊天
         <ul id="messages">
           <li class="right">
-            <img src="../image/user4.jpg">
+            <!-- <img src="../image/user4.jpg"> -->
             <div>
               <span>温恩</span>
               <p style="color: #000000;">

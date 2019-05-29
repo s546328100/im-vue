@@ -16,6 +16,7 @@
     "only-arrow-functions": false,
     "ban-types": false,
     "prefer-const": false,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "curly": false
   }
 }

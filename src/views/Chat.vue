@@ -86,7 +86,7 @@
             <div
               id="box"
               class="box_bd chat_bd scrollbar-dynamic scroll-content"
-              style="margin-bottom: 0px;margin-right: 0px;height: 486px;"
+              style="margin-bottom: 0px;margin-right: 0px;height: 100%;"
             >
               <div>
                 <!-- 消息 start me -->
@@ -94,22 +94,24 @@
                   <div class="clearfix">
                     <div style="overflow: hidden;">
                       <div class="message" :class="{me: message.me}">
-                        <div class="message_system">
+                        <div class="message_system" v-if="message.type === 'sys' || message.sys">
                           <div class="content">{{new Date(message.time).toLocaleTimeString()}}</div>
                         </div>
-                        <img class="avatar" :src="message.avatar" alt>
-                        <div class="content">
-                          <div
-                            class="bubble js_message_bubble ng-scope"
-                            :class="{right: message.me, left: !message.me, bubble_primary: message.me, bubble_default: !message.me}"
-                          >
-                            <div class="bubble_cont">
-                              <div class="plain">
-                                <pre class="js_message_plain ng-binding">{{message.content}}</pre>
+                        <template v-if="message.type === 'user'">
+                          <img class="avatar" :src="message.avatar" alt>
+                          <div class="content">
+                            <div
+                              class="bubble js_message_bubble ng-scope"
+                              :class="{right: message.me, left: !message.me, bubble_primary: message.me, bubble_default: !message.me}"
+                            >
+                              <div class="bubble_cont">
+                                <div class="plain">
+                                  <pre class="js_message_plain ng-binding">{{message.content}}</pre>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </template>
                       </div>
                     </div>
                   </div>
@@ -169,18 +171,17 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import { getUser } from '../views/request/Request';
+import { IMessage, IUser } from '../contracts/ICommon';
 
 @Component({})
 export default class Chat extends Vue {
-  public user = {
-    name: sessionStorage.getItem('user'),
-    avatar: require(`../image/user${Math.floor(Math.random() * 4) + 1}.jpg`),
-  };
+  public user: IUser | {} = {};
 
   public chatItems = [
     {
       name: '公共聊天室',
-      avatar: require('../image/bg3.jpg'),
+      avatar: require('../image/liaotian.jpg'),
       number: 0,
     },
   ];
@@ -190,7 +191,7 @@ export default class Chat extends Vue {
     number: 0,
   };
 
-  public messages: any = [];
+  public messages: IMessage[] = [];
 
   public inputTxtArea = '';
 
@@ -272,12 +273,24 @@ export default class Chat extends Vue {
   }
 
   private mounted() {
-    this.$socket.on('message', (data: any) => {
-      this.messages.push({
-        avatar: require(`../image/user${Math.floor(Math.random() * 4) +
-          1}.jpg`),
-        ...data,
-      });
+    getUser({name: sessionStorage.getItem('user')!}).subscribe((item: IUser) => {
+      this.user = item;
+    });
+
+    this.$socket.on('message', (data: IMessage) => {
+      data.sys = true;
+      const messageLen = this.messages.length;
+      if (messageLen) {
+        let lastMessage = this.messages[messageLen - 1];
+        if (
+          new Date(data.time).getTime() - new Date(lastMessage.time).getTime() <
+          60 * 1000
+        ) {
+          data.sys = false;
+        }
+      }
+      console.log(data);
+      this.messages.push(data);
 
       // 滚动条总是在最底部
       this.$nextTick(() => {
@@ -302,9 +315,9 @@ export default class Chat extends Vue {
 }
 
 .main {
-  // height: 80%;
+  height: 80%;
   min-height: 600px;
-  // padding-top: 100px;
+  padding-top: 75px;
   -webkit-transition: padding 0.3s linear;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

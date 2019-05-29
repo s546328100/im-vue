@@ -26,8 +26,8 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { userLogin } from '@/views/request/Request';
-import { ILoginParams } from '@/contracts/ICommon';
+import { userLogin } from '../views/request/Request';
+import { ILoginParams } from '../contracts/ICommon';
 import { timer } from 'rxjs';
 
 @Component({})
@@ -67,9 +67,10 @@ export default class Login extends Vue {
       if (valid) {
         this.loading = true;
         userLogin(this.loginParams).subscribe((item: any) => {
+          console.log(item);
           if (item && JSON.stringify(item) !== '{}') {
-            sessionStorage.setItem('user', item);
-            this.$socket.init(item, () => {
+            sessionStorage.setItem('user', item.name);
+            this.$socket.init(item.name, () => {
               console.log('user无效！');
               this.loginState.invalid = true;
               this.loginState.text = '进入中';
@@ -110,6 +111,11 @@ export default class Login extends Vue {
         this.loginState.text = '进入';
         (this.$refs.ruleForm as any).resetFields();
       }
+    }
+
+    if (e.keyCode === 13) {
+      this.submitForm('ruleForm');
+      e.preventDefault();
     }
   }
 

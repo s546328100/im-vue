@@ -1,5 +1,5 @@
 import { createRequest } from '@/common/Request';
-import { ILoginParams } from '@/contracts/ICommon';
+import { ILoginParams, IUser } from '@/contracts/ICommon';
 
 export const userLogin = createRequest<
   ILoginParams,
@@ -7,4 +7,12 @@ export const userLogin = createRequest<
 >({
   url: 'user/login',
   method: 'post',
+});
+
+export const getUser = createRequest<
+  ILoginParams,
+  IUser
+>({
+  url: 'user',
+  method: 'get',
 });
