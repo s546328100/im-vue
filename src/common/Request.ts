@@ -3,9 +3,10 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from '../contracts/IResponse';
 import { of } from 'rxjs';
+import config from '../config.json';
 
-// const baseUrl = 'http://127.0.0.1:8081/api/';
-const baseUrl = 'http://kyun.dusuchao.xin:8081/api/';
+const baseUrl = config.baseUrl + '/api/';
+// const baseUrl = 'http://kyun.dusuchao.xin:8081/api/';
 
 interface IAjaxResponse<O> extends AjaxResponse {
   response: IResponse<O>;

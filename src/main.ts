@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { Socket } from './common/socket';
+import config from '../config.json';
+
 import {
   Input,
   Button,
@@ -31,7 +33,7 @@ Vue.use(Row);
 
 Vue.config.productionTip = false;
 
-const socket = new Socket('http://127.0.0.1:3002', { forceNew: true });
+const socket = new Socket(config.socketUrl, { forceNew: true });
 Vue.prototype.$socket = socket;
 
 new Vue({
