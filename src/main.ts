@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { Socket } from './common/socket';
-import config from '../config.json';
+import { config } from './config';
 
 import {
   Input,

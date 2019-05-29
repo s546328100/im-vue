@@ -3,7 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from '../contracts/IResponse';
 import { of } from 'rxjs';
-import config from '../config.json';
+import { config } from '../config';
 
 const baseUrl = config.baseUrl + '/api/';
 // const baseUrl = 'http://kyun.dusuchao.xin:8081/api/';
