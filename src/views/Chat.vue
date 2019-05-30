@@ -74,11 +74,36 @@
       <div style="height: 100%">
         <div class="box chat">
           <div class="box_hd">
+            <!-- 群用户 start -->
+            <div v-show="membersWrp">
+              <div class="mmpop members_wrp slide-down">
+                <div class="members">
+                  <div
+                    class="scroll-wrapper scrollbar-dynamic members_inner"
+                    style="position: relative;"
+                  >
+                    <div
+                      class="scrollbar-dynamic members_inner scroll-content scroll-scrolly_visible"
+                      style="margin-bottom: 0px; margin-right: 0px; height: 100%;"
+                    >
+                      <div class="member" v-for="(user, index) in users" v-bind:key="index">
+                        <img class="avatar" :src="user.avatar" alt>
+                        <p class="nickname">{{user.name}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 群用户 end -->
             <div class="title_wrap">
               <div class="title poi">
                 <a class="title_name">{{currChatItem.name}}&nbsp;</a>
                 <span>({{currChatItem.number}})&nbsp;</span>
-                <i class="web_wechat_down_icon"></i>
+                <i
+                  :class="{web_wechat_down_icon: !membersWrp, web_wechat_up_icon: membersWrp}"
+                  @click="membersWrp = !membersWrp"
+                ></i>
               </div>
             </div>
           </div>
@@ -174,12 +199,13 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { getUser, getUserCount } from '../views/request/Request';
+import { getUser, getUserAll } from '../views/request/Request';
 import { IMessage, IUser } from '../contracts/ICommon';
 
 @Component({})
 export default class Chat extends Vue {
   public user: IUser | {} = {};
+  public users: IUser[] = [];
 
   public chatItems = [
     {
@@ -199,6 +225,8 @@ export default class Chat extends Vue {
   public messages: IMessage[] = [];
 
   public n: any;
+
+  public membersWrp = false;
 
   public sendTextMessage() {
     let inputTxtArea = document.getElementById('inputTxtArea')!;
@@ -293,8 +321,9 @@ export default class Chat extends Vue {
       },
     );
 
-    getUserCount().subscribe((item: number) => {
-      this.currChatItem.number = item;
+    getUserAll().subscribe((item: IUser[]) => {
+      this.currChatItem.number = item.length;
+      this.users = item;
     });
 
     this.$socket.on('message', (data: IMessage) => {
@@ -317,7 +346,13 @@ export default class Chat extends Vue {
         msg: (data.type === 'user' ? data.name + '：' : '') + data.content,
       });
 
-      if (data.type === 'sys' && data.new) this.currChatItem.number += data.new;
+      if (data.type === 'sys' && data.new) {
+        // this.currChatItem.number += data.new;
+        getUserAll().subscribe((item: IUser[]) => {
+          this.currChatItem.number = item.length;
+          this.users = item;
+        });
+      }
 
       // 滚动条总是在最底部
       this.$nextTick(() => {
@@ -666,6 +701,83 @@ export default class Chat extends Vue {
   overflow: hidden;
 }
 
+.mmpop {
+  position: absolute;
+  background-color: #fff;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+.members_wrp {
+  top: 50px;
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #e0e0e0;
+  -moz-box-shadow: 1px 1px 1px #e0e0e0;
+  -webkit-box-shadow: 1px 1px 1px #e0e0e0;
+  width: 100%;
+}
+
+.slide-down {
+  transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.members {
+  padding: 10px 4px 8px 17px;
+  background-color: #eee;
+  border-bottom: 1px solid #dedede;
+}
+
+.member {
+  float: left;
+  position: relative;
+  height: 85px;
+  margin-right: 7px;
+  margin-left: 7px;
+  padding-top: 10px;
+
+  .avatar {
+    display: block;
+    cursor: pointer;
+    width: 55px;
+    height: 55px;
+    background-color: #ccc;
+  }
+
+  .nickname {
+    color: #888;
+    width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: 12px;
+    margin-left: -8px;
+    vertical-align: middle;
+  }
+}
+
+.members_inner {
+  margin-right: -4px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.scroll-wrapper {
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: relative;
+}
+
 .box_hd {
   text-align: center;
   position: absolute;
@@ -706,12 +818,6 @@ export default class Chat extends Vue {
       font-weight: 400;
     }
   }
-}
-
-.scroll-wrapper {
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: relative;
 }
 
 .chat {
@@ -977,6 +1083,22 @@ a {
   background-position: -477px -65px;
   -webkit-background-size: 487px 462px;
   background-size: 487px 462px;
+}
+
+.web_wechat_up_icon {
+  width: 10px;
+  height: 10px;
+  background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/css/5af37c4a880a95586cd41c5b251d5562@1x.png)
+    no-repeat;
+  background-position: -477px -55px;
+  -webkit-background-size: 487px 462px;
+  background-size: 487px 462px;
+}
+
+.web_wechat_turn,
+.web_wechat_up_icon {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .web_wechat_add,

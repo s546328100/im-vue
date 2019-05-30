@@ -24,3 +24,11 @@ export const getUserCount = createRequest<
   url: 'user/count',
   method: 'get',
 });
+
+export const getUserAll = createRequest<
+  void,
+  any
+>({
+  url: 'user/all',
+  method: 'get',
+});
