@@ -8,6 +8,7 @@ export interface IUser {
 }
 
 export interface IMessage {
+  avatar: string;
   name: string;
   content: string;
   time: string;

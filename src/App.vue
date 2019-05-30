@@ -10,6 +10,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import 'vue-router';
+import './common/socket';
+import 'vuex';
 
 @Component({})
 export default class App extends Vue {

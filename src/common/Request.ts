@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { config } from '../config';
 
 const baseUrl = config.baseUrl + '/api/';
-// const baseUrl = 'http://kyun.dusuchao.xin:8081/api/';
+
 
 interface IAjaxResponse<O> extends AjaxResponse {
   response: IResponse<O>;

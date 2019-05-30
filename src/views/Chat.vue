@@ -198,6 +198,8 @@ export default class Chat extends Vue {
 
   public messages: IMessage[] = [];
 
+  public n: any;
+
   public sendTextMessage() {
     let inputTxtArea = document.getElementById('inputTxtArea')!;
     if (!inputTxtArea.innerText) {
@@ -322,7 +324,45 @@ export default class Chat extends Vue {
         let box = document.getElementById('box')!;
         box.scrollTop = box.scrollHeight;
       });
+
+      if (document.hidden && !data.me && data.type === 'user') {
+        (async () => {
+          let n = await this.notification(this.n, {
+            title: '新消息',
+            body: data.content,
+            icon: data.avatar,
+          });
+          this.n = n;
+        })();
+      }
     });
+  }
+
+  private async notification(n: any, msg: any) {
+    if ((window as any).Notification) {
+      // 支持
+      // console.log('支持' + 'Web Notifications API');
+      // 如果支持Web Notifications API，再判断浏览器是否支持弹出实例
+      if (
+        (window as any).Notification &&
+        Notification.permission !== 'denied'
+      ) {
+        const status = await Notification.requestPermission().then();
+        // 如果状态是同意
+        if (status === 'granted') {
+          n && n.close();
+          const m = new Notification(msg.title, {
+            body: msg.body, // 消息体内容
+            icon: msg.icon, // 消息图片
+          });
+          m.onclick = function() {
+            // 点击当前消息提示框后，跳转到当前页面
+            window.focus();
+          };
+          return m;
+        }
+      }
+    }
   }
 }
 </script>
